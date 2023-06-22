@@ -29,27 +29,36 @@
     "@tiptap/react": "^2.0.3",
     "@tiptap/starter-kit": "^2.0.3",
     "@types/node": "20.2.4",
-    "@types/react": "18.2.7",
+    "@types/react": "^18.2.11",
     "@types/react-dom": "18.2.4",
     "@zxcvbn-ts/core": "^3.0.1",
     "@zxcvbn-ts/language-common": "^3.0.2",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
+    "bufferutil": "^4.0.7",
+    "cookies": "^0.8.0",
+    "cookies-next": "^2.1.2",
     "crypto-js": "^4.1.1",
     "embla-carousel-react": "^7.1.0",
+    "emoji-picker-react": "^4.4.9",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
+    "js-cookie": "^3.0.5",
     "next": "13.4.4",
     "next-themes": "^0.2.1",
     "postcss": "8.4.23",
     "react": "18.2.0",
+    "react-cookie": "^4.1.1",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
     "react-loading": "^2.0.3",
+    "socket.io-client": "^4.6.2",
     "tailwindcss": "3.3.2",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "utf-8-validate": "^5.0.10"
   },
   "devDependencies": {
-    "@types/crypto-js": "^4.1.1"
+    "@types/crypto-js": "^4.1.1",
+    "@types/js-cookie": "^3.0.3"
   }
 }

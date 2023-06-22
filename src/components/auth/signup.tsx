@@ -17,6 +17,8 @@ import PostSignUp from '@/function/Post/signup';
 import { AuthSignUpdto } from '@/lib/type/Authtype';
 import { WEBSITE_URL } from '@/lib/data/data';
 import { prngkey } from '@/function/crypt/prngkey';
+import { BiRename } from 'react-icons/bi';
+import { MdOutlineEmail, MdOutlineLock } from 'react-icons/md';
 
 const options = {
   dictionary: {
@@ -39,9 +41,9 @@ export default function SignUpComponent() {
 
     validate: {
       username: (vaule) =>
-        /^[a-zA-Z0-9_]+$/.test(vaule)
+        /^[A-Za-z0-9._]+$/.test(vaule)
           ? null
-          : 'Use only letters, numbers, and underscores',
+          : 'Use only letters, numbers, dot and underscores',
       email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
       password: (value) =>
         zxcvbn(value).score > 3
@@ -78,83 +80,87 @@ export default function SignUpComponent() {
 
   return (
     <Card shadow="sm" padding="lg" className="w-96 mx-5">
-        <form onSubmit={form.onSubmit(handleSubmit)}>
-          <div className="flex justify-center">
-            <Text fw={500} size={30} className="mb-4">
-              Create New Account
-            </Text>
-          </div>
-          <div className="mb-6">
-            <TextInput
-              id="username"
-              withAsterisk
-              label="User name:"
-              type="text"
-              {...form.getInputProps('username')}
-            />
-          </div>
-          <div className="mb-4">
-            <TextInput
-              id="email"
-              withAsterisk
-              label="Email:"
-              type="email"
-              {...form.getInputProps('email')}
-            />
-          </div>
-          <div className="mb-6">
-            <TextInput
-              id="password"
-              withAsterisk
-              label="Password:"
-              type="password"
-              {...form.getInputProps('password')}
-            />
-          </div>
-          <div className="mb-6">
-            <TextInput
-              id="confirmpassword"
-              withAsterisk
-              label="Confirm password:"
-              type="password"
-              {...form.getInputProps('confirmpassword')}
-            />
-          </div>
-          <Text fz="sm" c="yellow" className="mb-6">
-            ※ Please ensure that you remember this password because if you
-            forget it, we will be unable to assist you in recovering it
+      <form onSubmit={form.onSubmit(handleSubmit)}>
+        <div className="flex justify-center">
+          <Text fw={500} size={30} className="mb-4">
+            Create New Account
           </Text>
-          <div className="mb-6">
-            <Checkbox
-              label={
-                <>
-                  I accept{' '}
-                  <Anchor href="https://mantine.dev" target="_blank">
-                    terms{' '}
-                  </Anchor>
-                  and{' '}
-                  <Anchor href="/" target="_blank">
-                    conditions
-                  </Anchor>
-                </>
-              }
-              {...form.getInputProps('termsofservice', { type: 'checkbox' })}
-            />
-          </div>
-          <div className="mb-6"></div>
-          <div>
-            <Button type="submit" variant="outline" fullWidth>
-              {loadding ? <LoadingOverlay visible={loadding} /> : 'Sign Up'}
-            </Button>
-          </div>
-          <Divider my="sm" className="mb-4" />
-          <div className="flex justify-center">
-            <Text fw={350} size={14} className="">
-              Already a member?{' '}
-              <Anchor href={`${WEBSITE_URL}/login`}>Log In.</Anchor>
-            </Text>
-          </div>
-        </form>
-      </Card>
+        </div>
+        <div className="mb-6">
+          <TextInput
+            id="username"
+            withAsterisk
+            label="User name:"
+            type="text"
+            rightSection={<BiRename />}
+            {...form.getInputProps('username')}
+          />
+        </div>
+        <div className="mb-4">
+          <TextInput
+            id="email"
+            withAsterisk
+            label="Email:"
+            type="email"
+            rightSection={<MdOutlineEmail />}
+            {...form.getInputProps('email')}
+          />
+        </div>
+        <div className="mb-6">
+          <TextInput
+            id="password"
+            withAsterisk
+            label="Password:"
+            type="password"
+            rightSection={<MdOutlineLock />}
+            {...form.getInputProps('password')}
+          />
+        </div>
+        <div className="mb-6">
+          <TextInput
+            id="confirmpassword"
+            withAsterisk
+            label="Confirm password:"
+            type="password"
+            rightSection={<MdOutlineLock />}
+            {...form.getInputProps('confirmpassword')}
+          />
+        </div>
+        <Text fz="sm" c="yellow" className="mb-6">
+          ※ Please ensure that you remember this password because if you forget
+          it, we will be unable to assist you in recovering it
+        </Text>
+        <div className="mb-6">
+          <Checkbox
+            label={
+              <>
+                I accept{' '}
+                <Anchor href="https://mantine.dev" target="_blank">
+                  terms{' '}
+                </Anchor>
+                and{' '}
+                <Anchor href="/" target="_blank">
+                  conditions
+                </Anchor>
+              </>
+            }
+            {...form.getInputProps('termsofservice', { type: 'checkbox' })}
+          />
+        </div>
+        <div className="mb-6"></div>
+        <div>
+          <Button type="submit" variant="outline" fullWidth>
+            {loadding ? <LoadingOverlay visible={loadding} /> : 'Sign Up'}
+          </Button>
+        </div>
+        <Divider my="sm" className="mb-4" />
+        <div className="flex justify-center">
+          <Text fw={350} size={14} className="">
+            Already a member?{' '}
+            <Anchor href={`${WEBSITE_URL}/login`}>Log In.</Anchor>
+          </Text>
+        </div>
+      </form>
+    </Card>
   );
 }

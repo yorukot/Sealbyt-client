@@ -1,7 +1,4 @@
-import { AppShell } from '@mantine/core';
-
-import MantineThemeComponent from '@/components/theme/mantine';
-import NavbarCompoment from '@/components/layout/Navbar';
+import CustomAppShell from '@/components/layout/ChatRoom/AppShell';
 
 export default function RootLayout({
   children,
@@ -10,9 +7,7 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <AppShell padding="md" navbar={<NavbarCompoment />}>
-        {children}
-      </AppShell>
+      <CustomAppShell>{children}</CustomAppShell>
     </>
   );
 }
