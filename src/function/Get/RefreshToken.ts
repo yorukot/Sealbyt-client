@@ -3,12 +3,12 @@ import { AuthLogIndto } from "@/lib/type/Authtype";
 import axios from 'axios';
 import type { NextRequest } from 'next/server';
 
-export default async function GetRelationshipList(){
+export default async function RefreshToken(){
     try {
-        const RelationshipList = await axios.get(API_URL + '/relationship/', {withCredentials: true,})
-        return RelationshipList
+        const refreshToken = await axios.get(API_URL + '/auth/refreshtoken', {withCredentials: true,})
+        return refreshToken
     } catch (error : any) {
-        return error
+        return error.response
     }
 }
 

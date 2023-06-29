@@ -1,3 +1,4 @@
+import RefreshTokenComponents from '@/components/auth/RefreshToken';
 import CustomAppShell from '@/components/layout/ChatRoom/AppShell';
 
 export default function RootLayout({
@@ -7,7 +8,9 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <CustomAppShell>{children}</CustomAppShell>
+      <RefreshTokenComponents>
+        <CustomAppShell>{children}</CustomAppShell>
+      </RefreshTokenComponents>
     </>
   );
 }

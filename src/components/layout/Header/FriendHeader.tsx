@@ -26,6 +26,7 @@ import { FiAtSign } from 'react-icons/fi';
 import { BsCheckLg } from 'react-icons/bs';
 import { Notification } from '@mantine/core';
 import validateUsername from '@/function/verify/UserNameVerify';
+import CreateRoom from '@/function/Post/CraeteRoom';
 
 export default function FriendHeaderCompoment({
   opened,
