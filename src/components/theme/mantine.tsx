@@ -23,17 +23,17 @@ export default function MantineThemeComponent({
   useHotkeys([['mod+J', () => toggleColorScheme()]]);
 
   return (
-      <ColorSchemeProvider
-        colorScheme={colorScheme}
-        toggleColorScheme={toggleColorScheme}
+    <ColorSchemeProvider
+      colorScheme={colorScheme}
+      toggleColorScheme={toggleColorScheme}
+    >
+      <MantineProvider
+        theme={{ colorScheme }}
+        withGlobalStyles
+        withNormalizeCSS
       >
-        <MantineProvider
-          theme={{ colorScheme }}
-          withGlobalStyles
-          withNormalizeCSS
-        >
-          {children}
-        </MantineProvider>
-      </ColorSchemeProvider>
+        {children}
+      </MantineProvider>
+    </ColorSchemeProvider>
   );
 }
