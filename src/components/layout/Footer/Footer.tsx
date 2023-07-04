@@ -16,20 +16,30 @@ import { HiOutlineEmojiHappy } from 'react-icons/hi';
 import { AiOutlineSend } from 'react-icons/ai';
 import EmojiPicker, { Theme, EmojiStyle } from 'emoji-picker-react';
 import { useDebouncedState, useHotkeys } from '@mantine/hooks';
+import SendMessage from '@/function/Post/SendMessage';
+import { usePathname } from 'next/navigation';
 
 export default function FooterCompoment() {
+  const path_name = usePathname();
   const [file, setFile] = useState<File | null>(null);
   const [value, setValue] = useState('');
   const [SendingMessage, setSendingMessage] = useState(false);
-  function sendMessage() {
-    setSendingMessage(true)
-    setValue('');
+  async function sendMessage() {
     setSendingMessage(true);
+    const sendMessage_data = await SendMessage({
+      sender_room: path_name.replace('/me/', ''),
+      content: value,
+      file: [],
+      reply: null,
+    });
+    if(sendMessage_data.status !== 201) console.error('something went wrong')
+    setValue('');
+    setSendingMessage(false);
   }
   const keydown = (key: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (key.key === 'Enter' && !key.shiftKey) {
-      if(!SendingMessage) key.preventDefault();
-      sendMessage()
+      if (!SendingMessage) key.preventDefault();
+      sendMessage();
     }
   };
   return (
@@ -73,7 +83,11 @@ export default function FooterCompoment() {
                 variant="default"
                 onClick={sendMessage}
               >
-                {SendingMessage ? <Loader size='sm'/> : <AiOutlineSend size={20} />}
+                {SendingMessage ? (
+                  <Loader size="sm" />
+                ) : (
+                  <AiOutlineSend size={20} />
+                )}
               </ActionIcon>
             </div>
           }

@@ -21,9 +21,7 @@ export default function ChatBoxComponents({
   }: {
     children: React.ReactNode;
   }) {
-  const [scrollAreaHeight, setScrollAreaHeight] = useState(
-    window.innerHeight - 175
-  );
+  const [scrollAreaHeight, setScrollAreaHeight] = useState(0);
 
   const viewport = useRef<HTMLDivElement>(null);
 
@@ -36,7 +34,7 @@ export default function ChatBoxComponents({
     handleResize();
     window.addEventListener('resize', handleResize);
     viewport.current?.scrollTo({
-      top: viewport.current?.scrollHeight,
+      top: viewport.current.scrollHeight,
       behavior: 'auto',
     });
     return () => {
